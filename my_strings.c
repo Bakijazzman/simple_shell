@@ -33,3 +33,25 @@ char *_stringcpy(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+/**
+* _stringcat - concatenates two strings
+* @dest: destination
+* @src: source
+* Return: concatenated string
+*/
+char *_stringcat(char *dest, char *src)
+{
+	unsigned int i = 0, c = 0;
+
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	while (src[c] != '\0')
+	{
+		dest[i] = src[c];
+		i++;
+		c++;
+	}
+	return (dest);
+}

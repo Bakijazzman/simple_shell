@@ -8,4 +8,5 @@
 
 	int _stringlen(char *str);
 	char *_stringcpy(char *dest, char *src);
+	char *_stringcat(char *dest, char *src);
 #endif
