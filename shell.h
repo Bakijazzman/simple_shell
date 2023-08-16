@@ -7,4 +7,5 @@
 #include <unistd.h>
 
 	int _stringlen(char *str);
+	char *_stringcpy(char *dest, char *src);
 #endif
