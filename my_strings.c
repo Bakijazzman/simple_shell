@@ -15,3 +15,5 @@ int _stringlen (char *str)
 	return (count);
 }
 
+/**
+* 
