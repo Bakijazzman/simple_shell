@@ -4,7 +4,7 @@
 * @str: the string
 * Return: the number of character
 */
-int _stringlen (char *str)
+int _stringlen(char *str)
 {
 	int count = 0;
 
