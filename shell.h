@@ -9,4 +9,7 @@
 	int _stringlen(char *str);
 	char *_stringcpy(char *dest, char *src);
 	char *_stringcat(char *dest, char *src);
+	char *_strchr(char *s, char c);
+	int _putchar(char c);
+	int _putsting(char *str);
 #endif
