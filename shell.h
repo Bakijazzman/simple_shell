@@ -11,5 +11,5 @@
 	char *_stringcat(char *dest, char *src);
 	char *_strchr(char *s, char c);
 	int _putchar(char c);
-	int _putsting(char *str);
+	int _putstr(char *str);
 #endif

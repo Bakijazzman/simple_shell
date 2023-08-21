@@ -50,3 +50,25 @@ char *_strchr(char *s, char c)
 			return (0);
 		}
 }
+
+/**
+* _stringdup - duplicate a string
+* @str: the string to be duplicated
+* Return: pointer to the duplicated string
+*/
+char *string_dup(const char *str)
+{
+	int c = 0;
+	char *t;
+
+	if (!str)
+		return (NULL);
+	while (*str++)
+		c++;
+	t = malloc(sizeof(char) * (c + 1));
+	if (!t)
+		return (NULL);
+	for (c++; c--;)
+		t[c] = *--str;
+	return (t);
+}
