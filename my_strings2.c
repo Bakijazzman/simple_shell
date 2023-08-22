@@ -5,7 +5,7 @@
 * @s2: string2
 * Return: 0-success, positive - s1 > s2, negative- s1 < s2
 */
-int _stringcmp(char *s1, char *s2)
+int string_cmp(char *s1, char *s2)
 {
 	int RV, i = 0;
 
@@ -32,7 +32,7 @@ int _stringcmp(char *s1, char *s2)
 * @c: character to be checked
 * Return: pointer to the occurence of the character
 */
-char *_strchr(char *s, char c)
+char *str_chr(char *s, char c)
 {
 	int i = 0;
 
@@ -52,7 +52,7 @@ char *_strchr(char *s, char c)
 }
 
 /**
-* _stringdup - duplicate a string
+* string_dup - duplicate a string
 * @str: the string to be duplicated
 * Return: pointer to the duplicated string
 */
