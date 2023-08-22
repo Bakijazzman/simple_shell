@@ -7,7 +7,7 @@
  */
 int main(int count, char **vector)
 {
-	(void)count
+	(void)count;
 	unsigned long int size = 0;
 	int pro_rec = 0, interactive = isatty(STDIN_FILENO), position = 0;
 	char **buffer, *prompt = "(Myshell)$ ";
