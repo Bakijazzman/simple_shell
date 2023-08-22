@@ -90,11 +90,11 @@ int child_exit(char **cmd)
  * _exit - exit process
  * Return: fork id
  */
-int _exit()
+int _exit(void)
 {
 	size_t n;
 	static int stat;
-:
+
 	wait(&n);
 	if (WIFEXITED(n))
 		stat = WEXITSTATUS(n);

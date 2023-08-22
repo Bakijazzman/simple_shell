@@ -5,25 +5,21 @@
 * @s2: string2
 * Return: 0-success, positive - s1 > s2, negative- s1 < s2
 */
-int *string_cmp(char *s1, char *s2)
+int string_cmp(char *s1, char *s2)
 {
-	int *RV, i = 0;
-
-	while (s1[i])
+ 	while (*s1 && *s2)
 	{
-		if (s1[i] > s2[i])
+		if (*s1 == *s2)
 		{
-			RV = s1[i] - s2[i];
-			return (RV);
+			s1++;
+			s2++;
 		}
-		else if (s1[i] < s2[i])
+ 		else
 		{
-			RV = s1[i] - s2[i];
-			return (RV);
-		}
-		i++;
+			break;
+	 	}
 	}
-	return (0);
+	return (*s1 - *s2);
 }
 
 /**
