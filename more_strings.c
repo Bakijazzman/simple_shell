@@ -48,7 +48,7 @@ char *str_tok(char *string, char *delimeter)
 			return (NULL);
 		string = old_string;
 	}
-	while (*string && _strchr(delimeter, *string))
+	while (*string && str_chr(delimeter, *string))
 	{
 		++string;
 	}
@@ -56,7 +56,7 @@ char *str_tok(char *string, char *delimeter)
 		return (NULL);
 	new_string = string;
 
-	while (*string && !_strchr(delimeter, *string))
+	while (*string && !str_chr(delimeter, *string))
 	{
 		++string;
 	}
