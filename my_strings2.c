@@ -7,7 +7,7 @@
 */
 int *string_cmp(char *s1, char *s2)
 {
-	int RV, i = 0;
+	int *RV, i = 0;
 
 	while (s1[i])
 	{

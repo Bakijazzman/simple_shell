@@ -57,7 +57,7 @@ int run(char *cmd, int pro_rec)
 		exit(0);
 	if (fork_id != 0)
 		RV = _exit();
-	if (fork_id == 0 input[0][0] != '\0')
+	if (fork_id == 0 && input[0][0] != '\0')
 		RV = child_exit(input);
 
 	return (RV);
@@ -94,7 +94,7 @@ int _exit()
 {
 	size_t n;
 	static int stat;
-
+:
 	wait(&n);
 	if (WIFEXITED(n))
 		stat = WEXITSTATUS(n);
