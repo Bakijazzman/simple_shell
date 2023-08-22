@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
-* _stringcmp - function that compares two strings
+* string_cmp - function that compares two strings
 * @s1: string1
 * @s2: string2
 * Return: 0-success, positive - s1 > s2, negative- s1 < s2
 */
-int string_cmp(char *s1, char *s2)
+int *string_cmp(char *s1, char *s2)
 {
 	int RV, i = 0;
 
@@ -27,7 +27,7 @@ int string_cmp(char *s1, char *s2)
 }
 
 /**
-* _strchr - function that locates a string
+* str_chr - function that locates a string
 * @s: the string to be checked
 * @c: character to be checked
 * Return: pointer to the occurence of the character

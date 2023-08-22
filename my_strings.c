@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
-* _stringlen - function that returns the length of a string
+* string_len - function that returns the length of a string
 * @str: the string
 * Return: the number of character
 */
-int _stringlen(char *str)
+int string_len(char *str)
 {
 	int count = 0;
 
@@ -16,12 +16,12 @@ int _stringlen(char *str)
 }
 
 /**
-* _stringcpy - copies a string
+* string_cpy - copies a string
 * @dest: new string
 * @src: old string
 * Return: Newly copied string
 */
-char *_stringcpy(char *dest, char *src)
+char *string_cpy(char *dest, char *src)
 {
 	size_t i = 0;
 
@@ -34,12 +34,12 @@ char *_stringcpy(char *dest, char *src)
 	return (dest);
 }
 /**
-* _stringcat - concatenates two strings
+* string_cat - concatenates two strings
 * @dest: destination
 * @src: source
 * Return: concatenated string
 */
-char *_stringcat(char *dest, char *src)
+char *string_cat(char *dest, char *src)
 {
 	unsigned int i = 0, c = 0;
 
