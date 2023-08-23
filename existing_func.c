@@ -30,8 +30,8 @@ int my_cd(char **args, int line_num)
 	char *new_dir, *old_dir, cwd[1024];
 	char *cd_err = cd_error(args);
 
-	if (args[1] == NULL || _strcmp(args[1], "~") == 0)
-		new_dir = _getenv("HOME");
+	if (args[1] == NULL || str_cmp(args[1], "~") == 0)
+		new_dir = get_env("HOME");
 	else if (string_cmp(args[1], "-") == 0)
 		new_dir = get_env("OLDPWD");
 	else
@@ -59,7 +59,7 @@ int my_cd(char **args, int line_num)
 		free(cd_err);
 		return (1);
 	}
-	if (my_setenv("PWD", cwd, 1) != 0)
+	if (_setenv("PWD", cwd, 1) != 0)
 	{
 		perror("Could not set PWD environment variable");
 		free(cd_err);
@@ -77,7 +77,7 @@ int my_cd(char **args, int line_num)
  * @overwrite: replace variable
  * Return: Always 0 (Success)
  */
-int _setenv(const char *name, const char *value, int overwrite)
+int _setenv(char *name, char *value, int overwrite)
 {
 	int i, j;
 	int len;
@@ -126,7 +126,7 @@ int _setenv(const char *name, const char *value, int overwrite)
  * @args: command and arguments
  * Return: Always 0 (Success)
  */
-int my_unsetenv(char **args)
+int _unsetenv(char **args)
 {
 	int i, j;
 	char *name = args[1];
@@ -159,7 +159,7 @@ int my_unsetenv(char **args)
  * @args: command and arguments
  * Return: Always 0 (Success)
  */
-int my_exit(char **args)
+int EXIT(char **args)
 {
 	unsigned int exit_status = 0;
 	unsigned int max = 1 << (sizeof(int) * 8 - 1);
