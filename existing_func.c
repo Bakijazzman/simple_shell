@@ -32,8 +32,8 @@ int my_cd(char **args, int line_num)
 
 	if (args[1] == NULL || _strcmp(args[1], "~") == 0)
 		new_dir = _getenv("HOME");
-	else if (_strcmp(args[1], "-") == 0)
-		new_dir = _getenv("OLDPWD");
+	else if (string_cmp(args[1], "-") == 0)
+		new_dir = get_env("OLDPWD");
 	else
 		new_dir = args[1];
 	if (new_dir == NULL)
@@ -41,15 +41,15 @@ int my_cd(char **args, int line_num)
 		perror("Directory not found");
 		return (1);
 	}
-	old_dir = _getenv("PWD");
-	if (my_setenv("OLDPWD", old_dir, 1) != 0)
+	old_dir = get_env("PWD");
+	if (_setenv("OLDPWD", old_dir, 1) != 0)
 	{
 		perror("Could not set OLDPWD environment variable");
 		return (1);
 	}
 	if (chdir(new_dir) != 0)
 	{
-		print_error(args[0], cd_err, line_num);
+		PRINT(args[0], cd_err, line_num);
 		free(cd_err);
 		return (1);
 	}
@@ -77,7 +77,7 @@ int my_cd(char **args, int line_num)
  * @overwrite: replace variable
  * Return: Always 0 (Success)
  */
-int my_setenv(const char *name, const char *value, int overwrite)
+int _setenv(const char *name, const char *value, int overwrite)
 {
 	int i, j;
 	int len;
@@ -88,7 +88,7 @@ int my_setenv(const char *name, const char *value, int overwrite)
 		perror("Invalid arguments");
 		return (1);
 	}
-	len = _strlen(name) + _strlen(value) + 2;
+	len = string_len(name) + string_len(value) + 2;
 	env = malloc(len);
 	if (env == NULL)
 	{
@@ -106,7 +106,7 @@ int my_setenv(const char *name, const char *value, int overwrite)
 		env[i + j + 1] = value[j];
 	}
 	env[i + j + 1] = '\0';
-	if (overwrite == 0 && _getenv(name) != NULL)
+	if (overwrite == 0 && get_env(name) != NULL)
 	{
 		free(env);
 		return (0);
@@ -130,7 +130,7 @@ int my_unsetenv(char **args)
 {
 	int i, j;
 	char *name = args[1];
-	int len = _strlen(name);
+	int len = string_len(name);
 
 	if (args[1] == NULL || args[2] != NULL)
 	{
@@ -140,7 +140,7 @@ int my_unsetenv(char **args)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (_strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+		if (string_cmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
 			for (j = i; environ[j] != NULL; j++)
 			{
