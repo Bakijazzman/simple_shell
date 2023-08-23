@@ -32,7 +32,7 @@ char *get_dir()
  */
 
 
-char *get_env(const char *name)
+char *get_env(char *name)
 {
 	int i = 0;
 	char *envi_ron;
@@ -63,9 +63,9 @@ char *get_env(const char *name)
 *
 * Return: the number of characters read from the stream
 */
-ssize_t get_line(char **lineptr, size_t *n, FILE *stream)
+ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream)
 {
-	static char buffer[BUFFER_SIZE];
+	static char buffer[1024];
 	static int buffer_pos, buffer_len;
 	int line_pos = 0, c;
 

@@ -79,7 +79,7 @@ char *str_tok(char *string, char *delimeter)
  * Return: Always 0 (Success)
  */
 
-int _strncmp(const char *s1, const char *s2, size_t n)
+int _strncmp(char *s1, char *s2, unsigned long int n)
 {
 	unsigned char p1, p2;
 	size_t i;
