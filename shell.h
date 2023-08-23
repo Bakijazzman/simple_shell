@@ -46,7 +46,7 @@ typedef struct array_path
 	int split(char *cmd, char *args[]);
 	int run(char *cmd, int pro_rec);
 	int child_exit(char **cmd);
-	int _exit(void);
+	int _exits(void);
 	int _free(char **args);
 	void _freepath(array_path *path);
 	void _freeenv(void);
