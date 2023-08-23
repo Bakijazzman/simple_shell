@@ -56,7 +56,7 @@ int run(char *cmd, int pro_rec)
 	if (fork_id < 0)
 		exit(0);
 	if (fork_id != 0)
-		RV = _exit();
+		RV = _exits();
 	if (fork_id == 0 && input[0][0] != '\0')
 		RV = child_exit(input);
 
@@ -92,7 +92,7 @@ int child_exit(char **cmd)
  */
 int _exits(void)
 {
-	size_t n;
+	int n;
 	static int exit_status;
 
 	wait(&n);
