@@ -99,5 +99,5 @@ int _exit(void)
 	if (WIFEXITED(n))
 		exit_status = WEXITSTATUS(n);
 
-	return (stat);
+	return (exit_status);
 }
