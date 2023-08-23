@@ -59,7 +59,7 @@ array_path *_path(void)
 
 	Path = get_env("PATH");
 	Path_dup = string_dup(Path);
-	pth = str_tok(Path_dup, ":");
+	dir = str_tok(Path_dup, ":");
 	_node->pth = string_dup(dir);
 
 	while (pth != NULL)
