@@ -14,6 +14,11 @@
 extern char **environ;
 extern int exit_status;
 
+/**
+ * struct array_path - linked list containing each directory in the path
+ * @pth: each path
+ * @next: pointer to next node
+ */
 typedef struct array_path
 {
 	char *pth;
@@ -38,7 +43,6 @@ typedef struct array_path
 	int execute(char **args, int pro_rec);
 	char *get_dir(void);
 	char *get_env(char *name);
-//	ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream);
 	ssize_t get_line(char **buffer, size_t *bufsize, int fd);
 	void not_buff(void);
 	void PRINT(char *cmd, char *msg, int line_num);
