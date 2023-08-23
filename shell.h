@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+
 extern char **environ;
 extern int stat;
 
@@ -47,6 +48,7 @@ typedef struct array_path
 	int run(char *cmd, int pro_rec);
 	int child_exit(char **cmd);
 	int _exits(void);
+	int built_ins(char **args, int line_num);
 	void _free(char **args);
 	void _freepath(array_path *path);
 	void _freeenv(void);

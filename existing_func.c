@@ -4,7 +4,7 @@
  *
  * Return: void
  */
-int my_env(void)
+int _env(void)
 {
 	char **env = environ;
 
@@ -25,7 +25,7 @@ int my_env(void)
  * @line_num: command count
  * Return: void
  */
-int my_cd(char **args, int line_num)
+int _cd(char **args, int line_num)
 {
 	char *new_dir, *old_dir, cwd[1024];
 	char *cd_err = cd_error(args);

@@ -42,6 +42,9 @@ int run(char *cmd, int pro_rec)
 
 	args = split(cmd, input);
 	input[args] = NULL;
+
+	if (built_ins(input, pro_rec))
+		return (0);
 	if (access(input[n], X_OK) < 0)
 	{
 		string_cpy(path, "/bin/");
