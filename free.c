@@ -1,20 +1,19 @@
 #include "shell.h"
 /**
- * _freeargs - is a function that frees the arguments
- * @args: this is the tokenized arguments
- * Return:void
+ * _free - frees the arguments
+ * @args: tokenized arguments
  */
 void  _free(char **args)
 {
-	int index;
-	int len = 0;
+	int i = 0, n = 0;
 
-	while (args[len] != NULL)
-		len++;
+	while (args[n])
+		n++;
 
-	for (index = 0; index < len; index++)
+	while (i < n)
 	{
-		free(args[index]);
+		free(args[i]);
+		i++;
 	}
 }
 
@@ -25,14 +24,14 @@ void  _free(char **args)
  */
 void _freepath(array_path *path)
 {
-	array_path *temp;
+	array_path *hold;
 
-	while (temp != NULL)
+	while (hold != NULL)
 	{
-		temp = path->next;
+		hold = path->next;
 		free(path->pth);
 		free(path);
-		path = temp;
+		path = hold;
 	}
 }
 /**
@@ -41,11 +40,12 @@ void _freepath(array_path *path)
  */
 void _freeenv(void)
 {
-	int index;
+	int i = 0;
 
-	for (index = 0; environ[index] != NULL; index++)
+	while (environ[i] != NULL)
 	{
-		free(environ[index]);
+		free(environ[i]);
+		i++;
 	}
 	free(environ);
 }

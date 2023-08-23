@@ -23,7 +23,7 @@ int exec_path(char **args)
 }
 
 /**
- * check_path - is a function that checks for a command in the path
+ * chc_path - is a function that checks for a command in the path
  * @args: is a command
  * Return: pid
  */

@@ -15,12 +15,12 @@ int main(int count, char **vector)
 
 	while (1)
 	{
-		if (interactive > 1)
+		if (interactive > 0)
 		{
 			_putstr(prompt);
 			fflush(stdout);
 		}
-		n_char = get_line(vector, &size, stdin);
+		n_char = get_line(vector, &size, STDIN_FILENO);
 		if (n_char < 0)
 		{
 			if (feof(stdin))

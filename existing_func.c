@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * my_env - Entry point
+ * _env - Entry point
  *
  * Return: void
  */
@@ -8,7 +8,7 @@ int _env(void)
 {
 	char **env = environ;
 
-	while (*env != NULL)
+	while (*env)
 	{
 		_putstr(*env);
 		_putstr("\n");
@@ -20,7 +20,7 @@ int _env(void)
 
 
 /**
- * my_cd - Entry point
+ * _cd - Entry point
  * @args: arguments passed
  * @line_num: command count
  * Return: void
@@ -30,13 +30,13 @@ int _cd(char **args, int line_num)
 	char *new_dir, *old_dir, cwd[1024];
 	char *cd_err = cd_error(args);
 
-	if (args[1] == NULL || string_cmp(args[1], "~") == 0)
+	if (!args[1] || string_cmp(args[1], "~") == 0)
 		new_dir = get_env("HOME");
 	else if (string_cmp(args[1], "-") == 0)
 		new_dir = get_env("OLDPWD");
 	else
 		new_dir = args[1];
-	if (new_dir == NULL)
+	if (!new_dir)
 	{
 		perror("Directory not found");
 		return (1);
@@ -44,7 +44,7 @@ int _cd(char **args, int line_num)
 	old_dir = get_env("PWD");
 	if (_setenv("OLDPWD", old_dir, 1) != 0)
 	{
-		perror("Could not set OLDPWD environment variable");
+		perror("OLDPWD environment variable failed");
 		return (1);
 	}
 	if (chdir(new_dir) != 0)
@@ -55,13 +55,13 @@ int _cd(char **args, int line_num)
 	}
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
-		perror("Could not get current directory");
+		perror("current directory failed");
 		free(cd_err);
 		return (1);
 	}
 	if (_setenv("PWD", cwd, 1) != 0)
 	{
-		perror("Could not set PWD environment variable");
+		perror("PWD environment variable failed");
 		free(cd_err);
 		return (1);
 	}
@@ -71,7 +71,7 @@ int _cd(char **args, int line_num)
 
 
 /**
- * my_setenv - Entry point
+ * _setenv - mimics setenv
  * @name: name of environment variable
  * @value: environment value
  * @overwrite: replace variable
@@ -79,31 +79,31 @@ int _cd(char **args, int line_num)
  */
 int _setenv(char *name, char *value, int overwrite)
 {
-	int i, j;
-	int len;
+	int i = 0, j = 0, t;
 	char *env;
 
-	if (name == NULL || value == NULL)
+	if (!name || !value)
 	{
 		perror("Invalid arguments");
 		return (1);
 	}
-	len = string_len(name) + string_len(value) + 2;
-	env = malloc(len);
-	if (env == NULL)
+	t = string_len(name) + string_len(value) + 2;
+	env = malloc(t);
+	if (!env)
 	{
 		perror("Memory allocation failed");
 		return (1);
 	}
-	for (i = 0; name[i] != '\0'; i++)
+	while (name[i] != '\0')
 	{
 		env[i] = name[i];
+		i++;
 	}
 	env[i] = '=';
-
-	for (j = 0; value[j] != '\0'; j++)
+	while (value[j] != '\0')
 	{
 		env[i + j + 1] = value[j];
+		j++;
 	}
 	env[i + j + 1] = '\0';
 	if (overwrite == 0 && get_env(name) != NULL)
@@ -111,7 +111,7 @@ int _setenv(char *name, char *value, int overwrite)
 		free(env);
 		return (0);
 	}
-	if (putenv(env) != 0)
+	if (setenv(name, value, overwrite) != 0)
 	{
 		perror("Setting environment variable failed");
 		free(env);
@@ -122,7 +122,7 @@ int _setenv(char *name, char *value, int overwrite)
 }
 
 /**
- * my_unsetenv - Entry point
+ * _unsetenv - Entry point
  * @args: command and arguments
  * Return: Always 0 (Success)
  */
@@ -155,7 +155,7 @@ int _unsetenv(char **args)
 
 
 /**
- * my_exit - Entry point
+ * EXIT - Entry point
  * @args: command and arguments
  * Return: Always 0 (Success)
  */

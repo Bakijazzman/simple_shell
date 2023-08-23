@@ -45,7 +45,7 @@ int run(char *cmd, int pro_rec)
 
 	if (built_ins(input, pro_rec))
 		return (0);
-	if (access(input[n], X_OK) < 0)
+	if (access(input[n], X_OK) == -1)
 	{
 		string_cpy(path, "/bin/");
 		string_cat(path, input[n]);
@@ -57,7 +57,7 @@ int run(char *cmd, int pro_rec)
 	}
 	fork_id = fork();
 	if (fork_id < 0)
-		exit(0);
+		exit(EXIT_FAILURE);
 	if (fork_id != 0)
 		RV = _exits();
 	if (fork_id == 0 && input[0][0] != '\0')
@@ -90,7 +90,7 @@ int child_exit(char **cmd)
 	return (0);
 }
 /**
- * _exit - exit process
+ * _exits - exit process
  * Return: fork id
  */
 int _exits(void)

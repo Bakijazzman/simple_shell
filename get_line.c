@@ -55,62 +55,53 @@ char *get_env(char *name)
 	return (NULL);
 }
 
-/**
-*  get_line - Read a line of input from a stream
-* @lineptr: a pointer to a pointer to a buffer
-* @n: pointer to the size of the buffer
-* @stream: a pointer to the input stream to read from
-*
-* Return: the number of characters read from the stream
-*/
-ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream)
+ssize_t get_line(char **buffer, size_t *bufsize, int fd)
 {
-	static char buffer[1024];
-	static int buffer_pos, buffer_len;
-	int line_pos = 0, c;
+	static size_t line_buffer_size = 1024;
+	ssize_t read_bytes;
+	size_t len = 0;
+	*bufsize = line_buffer_size;
+	*buffer = malloc(*bufsize * sizeof(char));
 
-	if (lineptr == NULL || n == NULL || stream == NULL)
-		return (-1);
-	if (*lineptr == NULL || *n == 0)
+	if (!*buffer)
 	{
-		*n = 1024;
-		*lineptr = malloc(*n);
-		if (*lineptr == NULL)
+		not_buff();
+	}
+
+	while ((read_bytes = read(fd, *buffer + len, 1)) > 0)
+	{
+		if ((*buffer)[len] == '\n')
+		{
+			(*buffer)[len] = '\0';
+			return (len);
+		}
+		len++;
+
+		if (len >= *bufsize)
+		{
+			*bufsize *= 2;
+			*buffer = realloc(*buffer, *bufsize * sizeof(char));
+			if (!*buffer)
+				not_buff();
+			free(*buffer);
 			return (-1);
+		}
 	}
-	while (1)
+	if (read_bytes == -1)
 	{
-		if (buffer_pos >= buffer_len)
-		{
-			buffer_len = read(fileno(stream), buffer, 1024);
-			if (buffer_len <= 0)
-				return (buffer_len);
-			buffer_pos = 0;
-		}
-		c = buffer[buffer_pos++];
-		(*lineptr)[line_pos++] = c;
-		if (line_pos >= (int)(*n - 1))
-		{
-			*n += 1024;
-			*lineptr = realloc(*lineptr, *n);
-			if (*lineptr == NULL)
-				return (-1);
-		}
-		if (c == '\n')
-		{
-			break;
-		}
+		free(*buffer);
+		perror("read");
+		exit(EXIT_FAILURE);
 	}
-	(*lineptr)[line_pos] = '\0';
-	return ((ssize_t)line_pos);
+	free(*buffer);
+	return (-1);
 }
-
 /**
  * not_buff - Entry point
  * Return: error
  */
-/*void not_buff(void)
+void not_buff(void)
 {
 	perror("get_line");
 	exit(EXIT_FAILURE);
-}*/
+}

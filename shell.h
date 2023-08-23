@@ -12,7 +12,7 @@
 
 
 extern char **environ;
-extern int stat;
+extern int exit_status;
 
 typedef struct array_path
 {
@@ -38,7 +38,9 @@ typedef struct array_path
 	int execute(char **args, int pro_rec);
 	char *get_dir(void);
 	char *get_env(char *name);
-	ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream);
+//	ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream);
+	ssize_t get_line(char **buffer, size_t *bufsize, int fd);
+	void not_buff(void);
 	void PRINT(char *cmd, char *msg, int line_num);
 	char *cd_error(char **args);
 	int exec_path(char **args);
