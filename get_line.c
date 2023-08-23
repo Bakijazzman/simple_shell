@@ -54,7 +54,13 @@ char *get_env(char *name)
 	}
 	return (NULL);
 }
-
+/**
+ * get_line - Entry point
+ * @buffer: to hold command and arguments
+ * @bufsize: size of buffer
+ * @fd: file descriptor of input stream
+ * Return: string buffer
+ */
 ssize_t get_line(char **buffer, size_t *bufsize, int fd)
 {
 	static size_t line_buffer_size = 1024;
