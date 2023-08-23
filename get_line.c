@@ -73,7 +73,7 @@ ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream)
 		return (-1);
 	if (*lineptr == NULL || *n == 0)
 	{
-		*n = BUFFER_SIZE;
+		*n = 1024;
 		*lineptr = malloc(*n);
 		if (*lineptr == NULL)
 			return (-1);
