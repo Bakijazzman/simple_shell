@@ -24,6 +24,7 @@ typedef struct array_path
 	char *string_cat(char *dest, char *src);
 	char *str_chr(char *s, char c);
 	int string_cmp(char *s1, char *s2);
+	int _strncmp(char *s1, char *s2, unsigned long int n);
 	char *string_dup(const char *str);
 	int _putchar(char c);
 	int _putstr(char *str);

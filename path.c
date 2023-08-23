@@ -60,14 +60,14 @@ array_path *_path(void)
 	Path = get_env("PATH");
 	Path_dup = string_dup(Path);
 	pth = str_tok(Path_dup, ":");
-	_node->pth = _strdup(dir);
+	_node->pth = string_dup(dir);
 
 	while (pth != NULL)
 	{
 		pth = str_tok(NULL, ":");
 		if (pth != NULL)
 		{
-			_node->next = (linked_path *)malloc(sizeof(linked_path));
+			_node->next = (array_path *)malloc(sizeof(array_path));
 			_node = _node->next;
 			_node->pth = string_dup(dir);
 		}
