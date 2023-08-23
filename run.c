@@ -90,7 +90,7 @@ int child_exit(char **cmd)
  * _exit - exit process
  * Return: fork id
  */
-int _exit(void)
+int _exits(void)
 {
 	size_t n;
 	static int exit_status;
