@@ -56,8 +56,12 @@ int run(char *cmd, int pro_rec)
 		}
 	}
 	fork_id = fork();
+
 	if (fork_id < 0)
+	{
+		_putstr("\n");
 		exit(EXIT_FAILURE);
+	}
 	if (fork_id != 0)
 		RV = _exits();
 	if (fork_id == 0 && input[0][0] != '\0')

@@ -7,11 +7,11 @@
  */
 int main(int count, char **vector)
 {
-	(void)count;
-	unsigned long int size = 0;
+	size_t s = 0;
 	int pro_rec = 0, interactive = isatty(STDIN_FILENO), position = 0;
 	char **buffer, *prompt = "(Myshell)$ ";
 	ssize_t n_char;
+	(void)count;
 
 	while (1)
 	{
@@ -20,7 +20,7 @@ int main(int count, char **vector)
 			_putstr(prompt);
 			fflush(stdout);
 		}
-		n_char = get_line(vector, &size, STDIN_FILENO);
+		n_char = get_line(vector, &s, STDIN_FILENO);
 		if (n_char < 0)
 		{
 			if (feof(stdin))
