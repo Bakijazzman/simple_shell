@@ -51,13 +51,13 @@ int chc_path(char **args)
 array_path *_path(void)
 {
 	char *dir, *Path, *Path_dup;
-	linked_path *head;
-	linked_path *_node = (array_path *)malloc(sizeof(array_path));
+	array_path *head;
+	array_path *_node = (array_path *)malloc(sizeof(array_path));
 
 	head = _node;
 
 
-	Path = _getenv("PATH");
+	Path = get_env("PATH");
 	Path_dup = string_dup(Path);
 	pth = str_tok(Path_dup, ":");
 	_node->pth = _strdup(dir);

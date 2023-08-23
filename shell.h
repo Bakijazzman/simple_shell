@@ -41,7 +41,7 @@ typedef struct array_path
 	char *cd_error(char **args);
 	int exec_path(char **args);
 	int chc_path(char **args);
-	array_path *path(void);
+	array_path *_path(void);
 	int split(char *cmd, char *args[]);
 	int run(char *cmd, int pro_rec);
 	int child_exit(char **cmd);

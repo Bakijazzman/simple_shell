@@ -10,29 +10,29 @@ int built_ins(char **args, int line_num)
 	if (args[0] == NULL)
 		return (1);
 
-	if (_strcmp(args[0], "exit") == 0)
+	if (string_cmp(args[0], "exit") == 0)
 	{
-		my_exit(args);
+		EXIT(args);
 		exit(2);
 	}
-	if (_strcmp(args[0], "env") == 0)
+	if (string_cmp(args[0], "env") == 0)
 	{
-		my_env();
+		_env();
 		return (1);
 	}
-	if (_strcmp(args[0], "cd") == 0)
+	if (string_cmp(args[0], "cd") == 0)
 	{
-		my_cd(args, line_num);
+		_cd(args, line_num);
 		return (1);
 	}
-	if (_strcmp(args[0], "setenv") == 0)
+	if (string_cmp(args[0], "setenv") == 0)
 	{
-		my_setenv(args[1], args[2], 1);
+		_setenv(args[1], args[2], 1);
 		return (1);
 	}
-	if (_strcmp(args[0], "unsetenv") == 0)
+	if (string_cmp(args[0], "unsetenv") == 0)
 	{
-		my_unsetenv(args);
+		_unsetenv(args);
 		return (1);
 	}
 	return (0);

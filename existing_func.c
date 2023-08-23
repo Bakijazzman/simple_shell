@@ -30,7 +30,7 @@ int my_cd(char **args, int line_num)
 	char *new_dir, *old_dir, cwd[1024];
 	char *cd_err = cd_error(args);
 
-	if (args[1] == NULL || str_cmp(args[1], "~") == 0)
+	if (args[1] == NULL || string_cmp(args[1], "~") == 0)
 		new_dir = get_env("HOME");
 	else if (string_cmp(args[1], "-") == 0)
 		new_dir = get_env("OLDPWD");
@@ -140,7 +140,7 @@ int _unsetenv(char **args)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (string_cmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+		if (_strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
 			for (j = i; environ[j] != NULL; j++)
 			{

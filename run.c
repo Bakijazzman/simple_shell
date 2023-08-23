@@ -93,11 +93,11 @@ int child_exit(char **cmd)
 int _exit(void)
 {
 	size_t n;
-	static int stat;
+	static int exit_status;
 
 	wait(&n);
 	if (WIFEXITED(n))
-		stat = WEXITSTATUS(n);
+		exit_status = WEXITSTATUS(n);
 
 	return (stat);
 }

@@ -41,13 +41,13 @@ char *get_env(const char *name)
 	while (environ[i] != NULL)
 	{
 		envi_ron = environ[i];
-		equals = _strchr(envi_ron, '=');
+		equals = str_chr(envi_ron, '=');
 
 		*equals = '\0';
-		if (_strcmp(envi_ron, name) == 0)
+		if (string_cmp(envi_ron, name) == 0)
 		{
 			*equals = '=';
-			return (environ[i] + _strlen(name) + 1);
+			return (environ[i] + string_len(name) + 1);
 		}
 		*equals = '=';
 		i++;

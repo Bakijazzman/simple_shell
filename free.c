@@ -25,12 +25,12 @@ void  _free(char **args)
  */
 void _freepath(array_path *path)
 {
-	linked_path *temp;
+	array_path *temp;
 
 	while (temp != NULL)
 	{
 		temp = path->next;
-		free(path->dir);
+		free(path->pth);
 		free(path);
 		path = temp;
 	}
