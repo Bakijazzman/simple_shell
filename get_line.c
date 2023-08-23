@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * get_dir - is a function that prints the working dir
  * Return: the working directory

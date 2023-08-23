@@ -12,11 +12,13 @@
 
 extern char **environ;
 extern int stat;
+
 typedef struct array_path
 {
 	char *pth;
 	struct array_path *next;
 } array_path;
+
 	int string_len(char *str);
 	char *string_cpy(char *dest, char *src);
 	char *string_cat(char *dest, char *src);
@@ -26,4 +28,25 @@ typedef struct array_path
 	int _putchar(char c);
 	int _putstr(char *str);
 	char *str_tok(char *string, char *delimeter);
+	int _env(void);
+	int _cd(char **args, int pro_rec);
+	int _setenv(char *name, char *value, int overwrite);
+	int _unsetenv(char **args);
+	int EXIT(char **args);
+	int execute(char **args, int pro_rec);
+	char *get_dir(void);
+	char *get_env(char *name);
+	ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream);
+	void PRINT(char *cmd, char *msg, int line_num);
+	char *cd_error(char **args);
+	int exec_path(char **args);
+	int chc_path(char **args);
+	array_path *path(void);
+	int split(char *cmd, char *args[]);
+	int run(char *cmd, int pro_rec);
+	int child_exit(char **cmd);
+	int _exit(void);
+	int _free(char **args);
+	void _freepath(array_path *path);
+	void _freeenv(void);
 #endif

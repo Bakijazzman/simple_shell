@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * my_env - Entry point
  *
@@ -196,6 +196,6 @@ int my_exit(char **args)
 			}
 		}
 	}
-	_freeargs(args);
+	_free(args);
 	exit(exit_status);
 }
