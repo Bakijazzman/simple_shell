@@ -12,6 +12,11 @@
 
 extern char **environ;
 extern int stat;
+typedef struct array_path
+{
+	char *pth;
+	struct array_path *next;
+} array_path;
 	int string_len(char *str);
 	char *string_cpy(char *dest, char *src);
 	char *string_cat(char *dest, char *src);
