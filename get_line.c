@@ -82,7 +82,7 @@ ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream)
 	{
 		if (buffer_pos >= buffer_len)
 		{
-			buffer_len = read(fileno(stream), buffer, BUFFER_SIZE);
+			buffer_len = read(fileno(stream), buffer, 1024);
 			if (buffer_len <= 0)
 				return (buffer_len);
 			buffer_pos = 0;
@@ -91,7 +91,7 @@ ssize_t get_line(char **lineptr, unsigned long int *n, FILE *stream)
 		(*lineptr)[line_pos++] = c;
 		if (line_pos >= (int)(*n - 1))
 		{
-			*n += BUFFER_SIZE;
+			*n += 1024;
 			*lineptr = realloc(*lineptr, *n);
 			if (*lineptr == NULL)
 				return (-1);
