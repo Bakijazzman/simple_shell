@@ -65,7 +65,7 @@ array_path *_path(void)
 	while (pth != NULL)
 	{
 		pth = str_tok(NULL, ":");
-		if (pth != NULL)
+		if (dir != NULL)
 		{
 			_node->next = (array_path *)malloc(sizeof(array_path));
 			_node = _node->next;
