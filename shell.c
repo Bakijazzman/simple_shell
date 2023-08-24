@@ -41,6 +41,7 @@ int main(int count, char **vector)
 			buffer++;
 		}
 		_free(buffer);
+		_free(vector);
 		pro_rec++;
 	}
 	return (0);

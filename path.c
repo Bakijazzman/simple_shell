@@ -18,6 +18,7 @@ int exec_path(char **args)
 		}
 		buff = buff->next;
 	}
+	_freepath(buff);
 	return (-1);
 
 }
