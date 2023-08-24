@@ -10,7 +10,7 @@ void  _free(char **args)
 	while (args[n])
 		n++;
 
-	while (i < n)
+	while (i <= n)
 	{
 		free(args[i]);
 		i++;
@@ -24,14 +24,14 @@ void  _free(char **args)
  */
 void _freepath(array_path *path)
 {
-	array_path *hold;
+	array_path *hold = path;
 
 	while (hold != NULL)
 	{
-		hold = path->next;
-		free(path->pth);
-		free(path);
-		path = hold;
+		path = hold->next;
+		free(hold->pth);
+		free(hold);
+		hold = path;
 	}
 }
 /**
@@ -47,5 +47,4 @@ void _freeenv(void)
 		free(environ[i]);
 		i++;
 	}
-	free(environ);
 }

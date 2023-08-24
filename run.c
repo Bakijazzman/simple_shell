@@ -104,7 +104,10 @@ int _exits(void)
 
 	wait(&n);
 	if (WIFEXITED(n))
+	{
 		exit_status = WEXITSTATUS(n);
+		return (exit_status);
+	}
 
-	return (exit_status);
+	return (-1);
 }
