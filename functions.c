@@ -37,3 +37,21 @@ int built_ins(char **args, int line_num)
 	}
 	return (0);
 }
+/**
+ * built_ins2 - Entry point
+ * @args: command and arguments
+ * @line_num: execution count
+ * Return: Always 0 (Success)
+ */
+int built_ins2(char **args, int line_num)
+{
+	(void) line_num;
+	if (string_cmp(args[0], "echo") == 0)
+	{
+		my_echo(args);
+		write(1, "\n", 1);
+		return (1);
+	}
+
+	return (0);
+}

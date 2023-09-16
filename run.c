@@ -43,13 +43,13 @@ int run(char *cmd, int pro_rec)
 	args = split(cmd, input);
 	input[args] = NULL;
 
-	if (built_ins(input, pro_rec))
+	if (built_ins(input, pro_rec)|| built_ins2(input, pro_rec))
 		return (0);
 	if (access(input[n], X_OK) == -1)
 	{
 		string_cpy(path, "/bin/");
 		string_cat(path, input[n]);
-		if (access(path, X_OK) < 0)
+		if (access(path, X_OK) == -1)
 		{
 			PRINT(input[0], "not found", pro_rec);
 			return (0);
@@ -57,9 +57,8 @@ int run(char *cmd, int pro_rec)
 	}
 	fork_id = fork();
 
-	if (fork_id < 0)
+	if (fork_id == -1)
 	{
-		_putstr("\n");
 		exit(EXIT_FAILURE);
 	}
 	if (fork_id != 0)

@@ -25,6 +25,11 @@ typedef struct array_path
 	struct array_path *next;
 } array_path;
 
+	int my_echo(char **args);
+	char *_itoa(int value);
+	int echo_env(int pro_rec, char **args, int i);
+	int echo_exit(int pro_rec);
+	int echo_ppid(int pro_rec);
 	int string_len(char *str);
 	char *string_cpy(char *dest, char *src);
 	char *string_cat(char *dest, char *src);
@@ -55,6 +60,7 @@ typedef struct array_path
 	int child_exit(char **cmd);
 	int _exits(void);
 	int built_ins(char **args, int line_num);
+	int built_ins2(char **args, int line_num);
 	void _free(char **args);
 	void _freepath(array_path *path);
 	void _freeenv(void);
